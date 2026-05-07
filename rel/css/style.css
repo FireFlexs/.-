@@ -575,7 +575,7 @@ input {
   }
 
   .card {
-    padding: 22px;
+    padding: 15px;
     border-radius: 18px;
   }
 
@@ -634,19 +634,19 @@ input {
   gap: 16px;
   padding: 18px 20px;
   border-radius: var(--radius);
-  border: 1px solid rgba(99,102,241,.2);
-  background: rgba(99,102,241,.05);
+  border: 1px solid rgba(99, 102, 241, .2);
+  background: rgba(99, 102, 241, .05);
   color: var(--text);
   cursor: pointer;
   text-align: left;
-  transition: all .25s cubic-bezier(.4,0,.2,1);
+  transition: all .25s cubic-bezier(.4, 0, .2, 1);
 }
 
 .exam-btn:hover {
-  border-color: rgba(99,102,241,.4);
-  background: rgba(99,102,241,.08);
+  border-color: rgba(99, 102, 241, .4);
+  background: rgba(99, 102, 241, .08);
   transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(99,102,241,.12);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, .12);
 }
 
 .exam-btn__icon {
@@ -677,8 +677,8 @@ input {
   gap: 6px;
   padding: 2px 10px;
   border-radius: 999px;
-  background: rgba(74,222,128,.08);
-  border: 1px solid rgba(74,222,128,.2);
+  background: rgba(74, 222, 128, .08);
+  border: 1px solid rgba(74, 222, 128, .2);
   font-weight: 700;
   font-size: .88rem;
   color: var(--success);
@@ -686,14 +686,14 @@ input {
 }
 
 .exam-timer.warning {
-  background: rgba(251,191,36,.08);
-  border-color: rgba(251,191,36,.2);
+  background: rgba(251, 191, 36, .08);
+  border-color: rgba(251, 191, 36, .2);
   color: #fbbf24;
 }
 
 .exam-timer.danger {
-  background: rgba(251,113,133,.08);
-  border-color: rgba(251,113,133,.2);
+  background: rgba(251, 113, 133, .08);
+  border-color: rgba(251, 113, 133, .2);
   color: var(--danger);
 }
 
@@ -706,8 +706,17 @@ input {
 }
 
 @keyframes timerPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .4; transform: scale(.7); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .4;
+    transform: scale(.7);
+  }
 }
 
 .exam-timer__value {

@@ -1,345 +1,439 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio of Kamolgks</title>
-  <link rel="shortcut icon"
-    href="https://pngset.com/images/ranime-logo-high-resolution-reddit-anime-comics-book-manga-helmet-transparent-png-1612963.png"
-    type="image/x-icon">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+  <title>Тесты — Главная</title>
+  <meta name="description" content="Платформа для подготовки к экзаменам. Тесты по религиоведению, философии и другим предметам.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08090e;
+      --surface: #0f1117;
+      --card: #13151c;
+      --card-hover: #191c26;
+      --border: rgba(255,255,255,.06);
+      --border-hover: rgba(255,255,255,.12);
+      --accent: #6366f1;
+      --accent-light: #818cf8;
+      --accent-glow: rgba(99,102,241,.15);
+      --accent2: #22d3ee;
+      --accent2-glow: rgba(34,211,238,.1);
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --radius: 20px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── AMBIENT BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(99,102,241,.08) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 40% at 80% 100%, rgba(34,211,238,.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .page-wrapper {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      background: rgba(8,9,14,.6);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .logo-icon {
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem;
+    }
+
+    .logo-text {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -.02em;
+    }
+
+    .header-badge {
+      font-size: .72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-muted);
+      padding: .35rem .75rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(99,102,241,.2);
+      background: rgba(99,102,241,.06);
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      animation: pulse-dot 2s ease infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(.95rem, 1.5vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── QUIZ CARDS GRID ── */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 720px;
+      padding: 0 1rem;
+    }
+
+    .quiz-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--text);
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+      overflow: hidden;
+    }
+
+    .quiz-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    .quiz-card:nth-child(1)::before {
+      background: linear-gradient(135deg, rgba(99,102,241,.06), rgba(34,211,238,.04));
+    }
+
+    .quiz-card:nth-child(2)::before {
+      background: linear-gradient(135deg, rgba(34,211,238,.06), rgba(168,85,247,.04));
+    }
+
+    .quiz-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,.3),
+        0 0 0 1px rgba(255,255,255,.04);
+    }
+
+    .quiz-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quiz-card:nth-child(1) .card-icon {
+      background: rgba(99,102,241,.12);
+      box-shadow: 0 0 20px rgba(99,102,241,.1);
+    }
+
+    .quiz-card:nth-child(2) .card-icon {
+      background: rgba(34,211,238,.12);
+      box-shadow: 0 0 20px rgba(34,211,238,.1);
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: .5rem;
+    }
+
+    .card-desc {
+      font-size: .88rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-meta-item {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .card-meta-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: .5;
+    }
+
+    .card-arrow {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: 1.5rem;
+      font-size: .82rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+      transition: gap .2s;
+    }
+
+    .quiz-card:nth-child(1) .card-arrow { color: var(--accent-light); }
+    .quiz-card:nth-child(2) .card-arrow { color: var(--accent2); }
+
+    .quiz-card:hover .card-arrow {
+      gap: .7rem;
+    }
+
+    .card-arrow svg {
+      width: 16px; height: 16px;
+      transition: transform .2s;
+    }
+
+    .quiz-card:hover .card-arrow svg {
+      transform: translateX(2px);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .78rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-eyebrow { animation: fadeUp .6s ease .1s both; }
+    .hero h1 { animation: fadeUp .6s ease .2s both; }
+    .hero-subtitle { animation: fadeUp .6s ease .3s both; }
+    .quiz-card:nth-child(1) { animation: fadeUp .6s ease .4s both; }
+    .quiz-card:nth-child(2) { animation: fadeUp .6s ease .5s both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .header { padding: 1rem 1.25rem; }
+      .hero { padding: 3rem 1.25rem 1.5rem; }
+      .quiz-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        padding: 0 1.25rem;
+      }
+      .quiz-card { padding: 1.5rem; }
+      .hero-subtitle { margin-bottom: 2.5rem; }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.08); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.14); }
+  </style>
 </head>
-
-
 <body>
-  <main>
-    <aside class="sidebar" data-sidebar>
-      <div class="sidebar-info">
-        <figure class="avatar-box">
-          <img src="./assets/images/ava_1.jpg" alt="Kamoliddin Tukhtaboev" width="80" style="border-radius: 10px;">
-        </figure>
-        <div class="info-content">
-          <h1 class="name" title="Kamoliddin Tukhtaboev">Kamoliddin Tukhtaboyev</h1>
-          <p class="title">Full-stack developer</p>
-        </div>
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
-      </div>
-      <div class="sidebar-info_more">
-        <div class="separator"></div>
-        <ul class="contacts-list">
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-              <a href="mailto:kamolgks@gmail.com" class="contact-link">kamolgks@gmail.com</a>
-            </div>
-          </li>
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="paper-plane-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Telegram</p>
-              <a href="https://t.me/kamolgks" class="contact-link">Kamolgks</a>
-            </div>
-          </li>
-          <li class="contact-item">
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-              <time datetime="03-18">March 18</time>
-              <p id="timer" class="t"></p>
-            </div>
-          </li>
-        </ul>
-        <div class="separator"></div>
-        <ul class="social-list">
-          <li class="social-item">
-            <a href="https://instagram.com/kamolgks/" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-          <li class="social-item">
-            <a href="https://github.com/kamolgks/" class="social-link">
-              <ion-icon name="logo-github"></ion-icon>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </aside>
-    <div class="main-content">
-      <nav class="navbar">
-        <ul class="navbar-list">
-          <li class="navbar-item">
-            <button class="navbar-link active" data-nav-link="about">About</button>
-          </li>
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link="resume">Resume</button>
-          </li>
-          <!-- <li class="navbar-item">
-            <button class="navbar-link" data-nav-link="portfolio">Portfolio</button>
-          </li> -->
-        </ul>
-      </nav>
+  <div class="page-wrapper">
 
-      <!-- <div class="cursor rounded"></div>
-      <div class="cursor pointed"><div> -->
+    <!-- HEADER -->
+    <header class="header" id="header">
+      <a href="/" class="logo">
+        <div class="logo-icon">📝</div>
+        <span class="logo-text">Тесты</span>
+      </a>
+      <span class="header-badge">Подготовка к экзаменам</span>
+    </header>
 
-      <!-- Section for "About me" -->
-      <article class="about active" data-page="about">
-        <header>
-          <h2 class="h2 article-title">About me</h2>
-        </header>
-        <section class="about-text">
-          <p>
-            As a full-stack developer with four years of experience under my belt, I specialize in crafting modern
-            websites and their server-side counterparts. My expertise lies in Python development, creating Telegram
-            bots, and scripting on a wide array of topics. I take great joy in my work and approach each task with
-            precision and enthusiasm.
-          </p>
-          <p>
-            Currently, I'm freelancing and am open to a variety of tasks. I'm always ready to learn new technologies
-            and further develop my skills in my field. For any collaboration proposals, feel free to reach out to me via
-            Telegram or via email.
-          </p>
-        </section>
-        <section class="service">
-          <h3 class="h3 service-title">What I'm doing</h3>
-          <ul class="service-list">
-            <li class="service-item">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg" alt="design icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web Development</h4>
-                <p class="service-item-text">The most modern and high-quality website made at a professional level.</p>
-              </div>
-            </li>
-            <li class="service-item">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Back-End Development</h4>
-                <p class="service-item-text">High-quality development of sites at the professional level.</p>
-              </div>
-            </li>
-            <li class="service-item">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Python, js scripts</h4>
-                <p class="service-item-text">I make high-quality scripts in python and js.</p>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </article>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-eyebrow">Выберите предмет</div>
+      <h1>Готовьтесь к экзаменам<br><span class="gradient-text">эффективно</span></h1>
+      <p class="hero-subtitle">
+        Тренажёры с&nbsp;реальными вопросами. Выберите предмет и&nbsp;начните тестирование прямо сейчас.
+      </p>
 
-      <!-- Section for "Resume" -->
-      <article class="resume" data-page="resume">
-        <header>
-          <h2 class="h2 article-title">Resume</h2>
-        </header>
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Education</h3>
+      <!-- QUIZ CARDS -->
+      <div class="quiz-grid" id="quiz-grid">
+        <a href="./rel/index.html" class="quiz-card" id="card-rel">
+          <div class="card-icon">🕌</div>
+          <div class="card-content">
+            <div class="card-title">Религиоведение</div>
+            <p class="card-desc">Вопросы по мировым религиям, истории и основам вероучений</p>
           </div>
-          <ol class="timeline-list">
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">School years</h4>
-              <span>2013 — 2024</span>
-              <p class="timeline-text">
-                I went to school №166. Reflecting on my school years, I recall a pivotal moment in 2019 when I was
-                gripped by a profound desire to become a website developer.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Front-end dev</h4>
-              <span>2021</span>
-              <p class="timeline-text">
-                Embarking on an online course in frontend development marked a significant chapter in my journey.
-                This experience was not only enlightening, as I absorbed a wealth of new knowledge, but also socially
-                enriching, as it allowed me to forge new friendships.
-                It was a rewarding venture that expanded both my skill set and my network.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Starting Back-End development</h4>
-              <span>2022 — 2024</span>
-              <p class="timeline-text">
-                Once again, my ambitions took a dramatic turn as I developed a keen interest in backend development.
-                Eager to delve into this new domain, I began exploring various online courses.
-                This self-guided learning journey allowed me to dive deep into the intricacies of backend development,
-                further broadening my skill set in the realm of web development.
-                It was yet another testament to my commitment to continuous learning and growth in the field.
-              </p>
-            </li>
-          </ol>
-        </section>
-        <section class="timeline">
-          <div class="title-wrapper">
-            <div class="icon-box">
-              <ion-icon name="book-outline"></ion-icon>
-            </div>
-            <h3 class="h3">Experience</h3>
+          <div class="card-meta">
+            <span class="card-meta-item">📋 211 вопросов</span>
+            <span class="card-meta-dot"></span>
+            <span class="card-meta-item">⏱ ~30 мин</span>
           </div>
-          <ol class="timeline-list">
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">First project</h4>
-              <span>2022</span>
-              <p class="timeline-text">
-                In 2022, I embarked on my first project as a freelancer. I received my first order from 
-                the "Kwork": a small website. it was a great start for me as a developer.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title"></h4>
-              <span>2023 - 2024</span>
-              <p class="timeline-text">
-                The period of 2023 - 2024 marked a significant phase in my career as I undertook multiple projects via
-                Kwork.
-                Each project was a learning experience, providing me with the opportunity to acquire new skills and
-                knowledge.
-                Along the way, I encountered various challenges, each of which served as a stepping stone, enabling me
-                to grow as a developer.
-                These experiences have not only enriched my understanding of the field but also equipped me with the
-                ability to navigate and overcome obstacles in future projects.
-                It's been a journey of continuous learning and problem-solving, and I look forward to what lies ahead.
-              </p>
-            </li>
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">GitHub projects</h4>
-              <span>2024</span>
-              <p class="timeline-text">I made several open-source mini-projects and posted them on GitHub. Among them:
-              </p>
-              <p class="timeline-text">- Password generator on Python: a simple password generator in Flask</p>
-              <p class="timeline-text">- Telegram bot to view the weather in your city</p>
-              <p class="timeline-text">- Telegram bot for getting Wikipedia articles on the entered topic</p>
-              <!-- <p class="timeline-text">- Telegram bot for searching gifs</p> -->
-            </li>
-            <li class="timeline-item">
-              <h4 class="h4 timeline-item-title">Voice chat</h4>
-              <span>2024</span>
-              <p class="timeline-text">
-                Voice chat with ChatGPT. This is a Flask app that uses voice technology from Eleven Labs 
-                with admin panel and database. Users can register and log in.
-                It allows users to interact with ChatGPT through voice commands
-              </p>
-            </li>
-          </ol>
-        </section>
-        <section class="skill">
-          <h3 class="h3 skills-title">My skills</h3>
-          <ul class="skills-list content-card">
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Front-End</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 70%;"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Back-End</h5>
-                <data value="75">75%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 65%;"></div>
-              </div>
-            </li>
-            <!-- <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Scripts</h5>
-                <data value="90">90%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li> -->
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Telegram Bots</h5>
-                <data value="90">0%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" style="width: 75%;"></div>
-              </div>
-            </li>
-          </ul>
-        </section>
-      </article>
-    </div>
-  </main>
+          <div class="card-arrow">
+            Перейти к тесту
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
 
-  <script>
-    // page navigation variables
-    const navigationLinks = document.querySelectorAll("[data-nav-link]");
-    const pages = document.querySelectorAll("[data-page]");
+        <a href="./quiz/index.html" class="quiz-card" id="card-philosophy">
+          <div class="card-icon">📚</div>
+          <div class="card-content">
+            <div class="card-title">Философия</div>
+            <p class="card-desc">357 вопросов по курсу философии, разделённых на два блока</p>
+          </div>
+          <div class="card-meta">
+            <span class="card-meta-item">📋 357 вопросов</span>
+            <span class="card-meta-dot"></span>
+            <span class="card-meta-item">⏱ ~45 мин</span>
+          </div>
+          <div class="card-arrow">
+            Перейти к тесту
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </section>
 
-    // add event to all nav link
-    for (let i = 0; i < navigationLinks.length; i++) {
-      navigationLinks[i].addEventListener("click", function () {
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+      <p>© 2026 Тесты — Подготовка к экзаменам</p>
+    </footer>
 
-        for (let i = 0; i < pages.length; i++) {
-          if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-            pages[i].classList.add("active");
-            navigationLinks[i].classList.add("active");
-            window.scrollTo(0, 0);
-          } else {
-            pages[i].classList.remove("active");
-            navigationLinks[i].classList.remove("active");
-          }
-        }
-
-      });
-    }
-  </script>
-
-  <script>
-    /**
-     * Updates the timer display with the time left until the birthday.
-     * The timer counts down from the birthday date to the current date.
-     * The time left is displayed in the format "X days, Y hours, Z minutes, K seconds".
-     
-     * Developers can customize the format by modifying the code.
-     */
-    const birthDay = new Date('March 18, 2025').getTime();
-    const timer = document.getElementById('timer');
-    
-    function countDown() {
-      const now = Date.now();
-      const timeLeft = birthDay - now;
-
-      timer.innerHTML = `${Math.floor(timeLeft / 1000 / 60 / 60 / 24)}d, ${Math.floor(timeLeft / 1000 / 60 / 60) % 24}h, ${Math.floor(timeLeft / 1000 / 60) % 60}m, ${Math.floor(timeLeft / 1000) % 60}s`;
-    }
-
-    setInterval(countDown, 1000);
-  </script>
-
-  <script src="./assets/js/script.js"></script>
-  <!-- <script src="/assets/js/b-day.js"></script> -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </div>
 </body>
-
 </html>

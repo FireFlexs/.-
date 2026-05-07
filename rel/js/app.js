@@ -269,7 +269,7 @@
   function applyAnswerVisuals(chosenIdx) {
     const q = state.quiz[state.index];
     const chosen = state.currentOrder[chosenIdx];
-
+    
     const buttons = [...document.querySelectorAll('.option-btn')];
     buttons.forEach((btn, i) => {
       btn.disabled = true; // Блокируем кнопки, если ответ уже дан
@@ -280,14 +280,14 @@
     const feedback = $('feedback');
     const nextBtn = $('nextBtn');
     feedback.hidden = false;
-
+    
     if (chosen && chosen.isCorrect) {
       feedback.innerHTML = `<strong>Верно.</strong> ${escapeHtml(chosen.text)}`;
     } else {
       const correctOpt = state.currentOrder[q.shuffledAnswerIndex];
       feedback.innerHTML = `<strong>Неверно.</strong> Правильный ответ: <b>${correctOpt.letter}</b> — ${escapeHtml(correctOpt.text)}`;
     }
-
+    
     nextBtn.hidden = false;
     if (state.index === state.quiz.length - 1) {
       nextBtn.textContent = 'Показать результат';
@@ -302,7 +302,7 @@
 
     const q = state.quiz[state.index];
     const chosen = state.currentOrder[idx];
-
+    
     // Сохраняем оригинальный индекс для истории
     q.userSelected = chosen.originalIndex;
 
@@ -342,7 +342,7 @@
       isCorrect: idx === q.answerIndex,
       letter: opt.letter || letterFromIndex(idx)
     }));
-
+    
     // Ответы всегда остаются в оригинальном порядке
     state.currentOrder = opts;
     q.shuffledAnswerIndex = state.currentOrder.findIndex(o => o.isCorrect);
